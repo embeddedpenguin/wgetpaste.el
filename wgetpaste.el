@@ -21,3 +21,7 @@
 
 (provide 'wgetpaste)
 ;;; wgetpaste.el ends here
+
+;; Local Variables:
+;; read-symbol-shorthands: (("@" . "wgetpaste-"))
+;; End:
