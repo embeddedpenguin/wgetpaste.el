@@ -73,14 +73,15 @@
 ;; hooks
 
 (defun wgetpaste-clear-stdout-buffer ()
-  (with-current-buffer wgetpaste-stdout-buffer
-    (erase-buffer)))
+  (get-buffer-create wgetpaste-stdout-buffer
+                     (with-current-buffer wgetpaste-stdout-buffer (erase-buffer))))
 
 (defun wgetpaste-save-url-to-clipboard ()
-  (with-current-buffer wgetpaste-stdout-buffer
-    (let ((url (buffer-substring (point-min) (point-max))))
-      (message "%s saved to kill ring" url)
-      (kill-ring-save (point-min) (point-max)))))
+  (get-buffer-create wgetpaste-stdout-buffer
+                     (with-current-buffer wgetpaste-stdout-buffer
+                       (let ((url (buffer-substring (point-min) (point-max))))
+                         (message "%s saved to kill ring" url)
+                         (kill-ring-save (point-min) (point-max))))))
 
 (defun wgetpaste-failed ()
   (message "wgetpaste failed, see wgetpaste stderr buffer for error information"))
